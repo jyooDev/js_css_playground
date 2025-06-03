@@ -1,0 +1,101 @@
+
+:root {
+    --background--grey: rgb(237, 237, 237);
+    --green-3: #0A3711;  
+    --green-1: #e7f1e8;
+    --shadow: rgba(181, 181, 181, 0.108);
+}
+body{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: var(--background--grey);
+    margin: 0;
+    padding: 0;
+}
+
+.calendar-container{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: auto;
+    top: 20vh;
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    border-radius: 1rem;
+}
+
+.calendar-header{
+    display: flex;
+    box-sizing: border-box;
+    padding: 1rem;
+    color: var(--green-1);
+    background-color: var(--green-3);
+    align-items: center;
+    width: 300px;
+    height: 50px;
+    justify-content: space-between;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.month-btns{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.calendar-body{
+    display: grid;
+    font-size: small;
+}
+
+.month-btns > button {
+     border: none;
+     color : var(--green-1);
+}
+
+.month-btns > button > span {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+.previous-month-btn, .next-month-btn{
+    all: unset;
+    background-color: none;
+    border: none;   
+    margin-top: 0.2rem;
+    position: relative;
+}
+
+.next-month-btn{
+    margin-left: 0.2rem;
+}
+.current-month-btn{
+    background-color: rgba(255, 255, 255, 0.219);
+    position: relative;
+    border-radius: 1rem;
+    margin-right: 0.7rem;
+    padding: 0.2rem 0.4rem;
+}
+
+.calendar-body{
+    display: flex;;
+    flex-direction: column;
+}
+
+.calendar-dow{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.5rem 0;
+    margin: 0;
+    /* box-shadow: 0 0.3rem  1rem var(--shadow); */
+}
+
+.calendar-dates{
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
