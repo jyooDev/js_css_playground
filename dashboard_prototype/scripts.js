@@ -1,7 +1,4 @@
 let date = new Date();
-
-let calendarDates = document.getElementsByClassName('calendar-dates')[0];
-console.log(calendarDates);
 const months = {
     0:'January',
     1:'February',
@@ -17,18 +14,49 @@ const months = {
     11:'December',
 }
 
-let  displayMonth = localStorage['displayedMonth'] || date.getMonth();
-let displayYear = localStorage['displayYear'] || date.getFullYear();
+let calendarDates = document.getElementsByClassName('calendar-dates')[0];
+let  displayMonth = sessionStorage['displayedMonth'] || date.getMonth();
+let displayYear = sessionStorage['displayYear'] || date.getFullYear(); 
+populateCalendar(displayMonth+1, displayYear);
 
-populateCalendaer(displayMonth, displayYear);
 
-function populateCalendaer(month, year){
+function populateCalendar(month, year){
+    populateHeader(month, year)
+    populateDates(month,year)
+};
+
+function populateHeader(month, year){
+    const calendarMonthYear = document.getElementsByClassName('calendar-month-year')[0];
+    console.log(calendarMonthYear)
+    calendarMonthYear.innerHTML = `<span>${months[month]}</span><span>${year}</span>`;
+}
+
+function populateDates(month, year){
     const firstDay = new Date(year, month, 1).getDay(); //returns Sunday - Saturday index : 0 - 6
     const lastDate = new Date(year, month+1, 0).getDate(); 
-
-    console.log(firstDay);
-    console.log(lastDate);
+    const lastDay = new Date(year, month+1, 0).getDay();
     
-    const no_date = '<li></li>'
+    let dateFromLastMonth = new Date(year, month,1-firstDay).getDate(); 
+    for(let i = 0; i < firstDay; i++){
+        const li = document.createElement('li');
+        li.textContent = `${dateFromLastMonth++}`;
+        li.classList.add('calendar-date', 'calendar-item', 'grey-text');
+        calendarDates.appendChild(li);
+    }
+    
+    for(let i = 1; i <= lastDate; i++)
+    {
+        let li = document.createElement('li');
+        li.classList.add('calendar-date', 'calendar-item');
+        li.textContent = `${i}`;
+        calendarDates.appendChild(li)
+    }
 
-};
+    for(let i = 1; i <= 6 - lastDay; i++)
+    {
+        const li = document.createElement('li');
+        li.textContent = `${i}`;
+        li.classList.add('calendar-date', 'calendar-item', 'grey-text');
+        calendarDates.appendChild(li);
+    }
+}

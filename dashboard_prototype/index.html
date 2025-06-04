@@ -10,7 +10,7 @@
 <body>
     <div class="calendar-container">
         <header class="calendar-header">
-            <p>June 2025</p>
+            <p class="calendar-month-year"></p>
             <div class="month-btns">
                 <button onclick="displayCurrentMonth" class="current-month-btn">TODAY</button>
                 <button onclick="displayPreviousMonth" class="previous-month-btn"><span class="material-symbols-outlined">arrow_back_ios</span></button>
@@ -19,17 +19,17 @@
         </header>
         
         <div class="calendar-body">
-            <ul class="calendar-dow">
-                <li>SUN</li>
-                <li>MON</li>
-                <li>TUE</li>
-                <li>WED</li>
-                <li>THU</li>
-                <li>FRI</li>
-                <li>SAT</li>
+            <ul class="calendar-dow calendar-grid-container">
+                <li class="calendar-item">SUN</li>
+                <li class="calendar-item">MON</li>
+                <li class="calendar-item">TUE</li>
+                <li class="calendar-item">WED</li>
+                <li class="calendar-item">THU</li>
+                <li class="calendar-item">FRI</li>
+                <li class="calendar-item">SAT</li>
             </ul>
-            <ul class="calendar-dates">
-
+            <ul class="calendar-dates calendar-grid-container">
+                
             </ul>
         </div>
     </div>
