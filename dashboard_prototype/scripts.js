@@ -14,21 +14,23 @@ const months = {
     11:'December',
 }
 
-let calendarDates = document.getElementsByClassName('calendar-dates')[0];
-let  displayMonth = sessionStorage['displayedMonth'] || date.getMonth();
-let displayYear = sessionStorage['displayYear'] || date.getFullYear(); 
-populateCalendar(displayMonth+1, displayYear);
-
+const calendarDates = document.getElementsByClassName('calendar-dates')[0];
+const  displayMonth = sessionStorage['displayedMonth'] || date.getMonth();
+const displayYear = sessionStorage['displayedYear'] || date.getFullYear();
+const TOTAL_DATE_CT = 42;
+sessionStorage.setItem('displayedMonth', displayMonth)
+sessionStorage.setItem('displayedYear', displayYear)
+populateCalendar(displayMonth, displayYear);
 
 function populateCalendar(month, year){
     populateHeader(month, year)
+    calendarDates.innerHTML = '';
     populateDates(month,year)
 };
 
 function populateHeader(month, year){
     const calendarMonthYear = document.getElementsByClassName('calendar-month-year')[0];
-    console.log(calendarMonthYear)
-    calendarMonthYear.innerHTML = `<span>${months[month]}</span><span>${year}</span>`;
+    calendarMonthYear.innerHTML = `<span>${year}</span><span>${months[month]}</span>`;
 }
 
 function populateDates(month, year){
@@ -52,11 +54,47 @@ function populateDates(month, year){
         calendarDates.appendChild(li)
     }
 
-    for(let i = 1; i <= 6 - lastDay; i++)
+    const calendarDateContainer = document.getElementsByClassName('calendar-dates')[0];
+    let numDatesLeft = 42 - calendarDateContainer.getElementsByTagName('li').length;
+    for(let i = 1; i <= numDatesLeft; i++)
     {
         const li = document.createElement('li');
         li.textContent = `${i}`;
         li.classList.add('calendar-date', 'calendar-item', 'grey-text');
         calendarDates.appendChild(li);
     }
+}
+function displayPreviousMonth(){
+    let currentMonth = sessionStorage.getItem('displayedMonth');
+    let currentYear = sessionStorage.getItem('displayedYear');
+    if (currentMonth == 0){
+        currentMonth = 11;
+        currentYear--;
+    }else{
+        currentMonth--;
+    }
+    console.log(`previous button clicked, populating previous month: ${months[currentMonth]} ${currentYear}`);
+    sessionStorage.setItem('displayedMonth', currentMonth);
+    sessionStorage.setItem('displayedYear', currentYear);
+    populateCalendar(currentMonth, currentYear);
+}
+
+function displayNextMonth(){
+    let currentMonth = sessionStorage.getItem('displayedMonth');
+    let currentYear = sessionStorage.getItem('displayedYear');
+    if (currentMonth == 11){
+        currentMonth = 0;
+        currentYear++;
+    }else{
+        currentMonth++;
+    }
+    console.log(`next button clicked, populating previous month: ${months[currentMonth]} ${currentYear}`);
+    sessionStorage.setItem('displayedMonth', currentMonth);
+    sessionStorage.setItem('displayedYear', currentYear);
+    populateCalendar(currentMonth, currentYear);
+}
+
+function displayCurrentMonth(){
+    console.log(`today button clicked: populating previous month: ${date.getMonth()} ${date.getFullYear()}`);
+    populateCalendar(date.getMonth(), date.getFullYear());
 }
