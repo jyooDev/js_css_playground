@@ -55,7 +55,7 @@ function populateDates(month, year){
     }
 
     const calendarDateContainer = document.getElementsByClassName('calendar-dates')[0];
-    let numDatesLeft = 42 - calendarDateContainer.getElementsByTagName('li').length;
+    let numDatesLeft = TOTAL_DATE_CT - calendarDateContainer.getElementsByTagName('li').length;
     for(let i = 1; i <= numDatesLeft; i++)
     {
         const li = document.createElement('li');
