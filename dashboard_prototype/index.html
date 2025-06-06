@@ -4,22 +4,22 @@
     <title>Dashboard Prototype</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined">
 </head>
 <body>
     <div class="calendar-container">
         <header class="calendar-header">
-            <p class="calendar-month-year"></p>
-            <div class="month-btns">
-                <button onclick="displayCurrentMonth()" class="current-month-btn">TODAY</button>
-                <button onclick="displayPreviousMonth()" class="previous-month-btn"><span class="material-symbols-outlined">arrow_back_ios</span></button>
-                <button onclick="displayNextMonth()"class="next-month-btn"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
+            <p id="calendar-month-year"></p>
+            <div id="month-btns">
+                <button id="current-month-btn">TODAY</button>
+                <button id='previous-month-btn'><span class="material-symbols-outlined">arrow_back_ios</span></button>
+                <button id="next-month-btn"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
             </div>
         </header>
         
         <div class="calendar-body">
-            <ul class="calendar-dow calendar-grid-container">
+            <ul id="calendar-dow" class="calendar-grid-container">
                 <li class="calendar-item">SUN</li>
                 <li class="calendar-item">MON</li>
                 <li class="calendar-item">TUE</li>
@@ -28,7 +28,7 @@
                 <li class="calendar-item">FRI</li>
                 <li class="calendar-item">SAT</li>
             </ul>
-            <ul class="calendar-dates calendar-grid-container">
+            <ul id="calendar-dates" class="calendar-grid-container">
                 
             </ul>
         </div>
@@ -36,6 +36,6 @@
     <div class="event-container">
 
     </div>
-    <script src="scripts.js"></script>
+    <script type="module" src="scripts/main.js"></script>
 </body>
 </html>
