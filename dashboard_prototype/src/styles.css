@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=National+Park:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --background--grey: rgb(237, 237, 237);
+    --green-3: #0A3711; 
+    --green-2:  #4a7c52;
+    --green-1: #7ca082;
+    --green-0: #e7f1e8;
+    --shadow: rgba(181, 181, 181, 0.108);
+}
+body{
+    font-family: libre-baskerville;
+    background-color: var(--background--grey);
+    margin: 0;
+    padding: 0;
+}
+
+#calendar-event-todo-wrapper{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    position: relative;
+    top: 20vh;
+}
+
+#calendar-container{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 330px;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0.5rem 0.5rem 0.5rem var(--shadow);
+}
+
+#event-todo-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: rgb(255, 255, 255);
+    width: 700px;
+    height: 330px;
+    border-radius: 1rem;
+    box-shadow: 0.5rem 0.5rem 0.5rem var(--shadow);
+    overflow: hidden;
+}
+
+#event-container, #todo-container{
+    display: flex;
+    flex-direction: column;
+}
+
+#event-header{
+    display: flex;
+    justify-content: center;
+    background-color: var(--green-2);
+    height: 50px;
+}
+
+#todo-header{
+    display: flex;
+    justify-content: center;
+    background-color: var(--green-1);
+}
+
+#event-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 280px;
+}
+
+.list{
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+.list > li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: solid 1px rgb(247, 247, 247);
+    border-radius: 0.3rem;
+    width: 300px;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    margin: 0.3rem;
+    box-shadow: 0rem 0.11rem 0.2rem var(--shadow);
+}
+
+.list > li:hover{
+    border: 2px solid var(--green-0);
+    box-shadow: 0rem 0.11rem 0.2rem var(--green-0);
+    transition: ease-in-out 0.1s;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: var(--green-2);
+}
+
+input[type="checkbox"]:not(:disabled):checked {
+  border-color: var(--green-1);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 32 32" xml:space="preserve"><path style="fill: %23274c77" d="M11.941,28.877l-11.941-11.942l5.695-5.696l6.246,6.246l14.364-14.364L32,8.818"/></svg>');
+}
+
+.add-btn{
+    text-align: center;
+    border: none;
+    background-color: var(--green-3);
+    color: white;
+    position: relative;
+    width: 200px;
+    height: 30px;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.2rem 0.4rem;
+}
+
+#todo-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 280px;
+}
+.calendar-header{
+    display: flex;
+    box-sizing: border-box;
+    padding: 1rem;
+    color: var(--green-0);
+    background-color: var(--green-3);
+    align-items: center;
+    width: 300px;
+    height: 50px;
+    justify-content: space-between;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.calendar-body{
+    display: grid;
+    font-size: small;
+}
+
+#month-btns{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+#month-btns > button {
+    border: none;
+    color : var(--green-0);
+}
+
+#month-btns > button > span {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+#previous-month-btn, #next-month-btn{
+    all: unset;
+    background-color: none;
+    border: none;   
+    margin-top: 0.2rem;
+    position: relative;
+}
+
+#next-month-btn{
+    margin-left: 0.2rem;
+}
+#current-month-btn{
+    background-color: rgba(255, 255, 255, 0.219);
+    position: relative;
+    border-radius: 1rem;
+    margin-right: 0.7rem;
+    padding: 0.2rem 0.4rem;
+}
+
+.calendar-body{
+    display: flex;;
+    flex-direction: column;
+}
+
+
+
+.calendar-grid-container{
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+}
+
+
+.calendar-item {
+    display: flex;
+    text-align: center;
+    font-size: 0.8rem;
+    justify-content: center;
+    align-items: center;
+}
+
+#calendar-dow {
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+    font-weight: 600;
+}
+
+.calendar-date {
+    margin: 0.7rem 0;
+    transition: ease-in-out()
+}
+
+#calendar-month-year{
+    display: flex;
+    gap: 0.5rem;
+}
+.grey-text{
+    color: rgb(222, 222, 222);
+}
+
+.today-date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#d47c11c3;
+    color: #f7f1e8;
+    font-weight: 700;
+    box-sizing: border-box;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 0;
+    transition: ease 0.3s;
+}

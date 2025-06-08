@@ -50,11 +50,21 @@ export class Calendar{
             let calendarAsJSON = this.toJSON();
             localStorage.setItem('calendar', JSON.stringify(calendarAsJSON));
         }
+        this.markToday(month,year);
         //this.populateTodos(month, year);
         //this.populateEvents(month, year);
         let monthlycalendarAsJSON = monthlyCalendar.toJSON();
         sessionStorage.setItem('renderedMonthlyCalendar', JSON.stringify(monthlycalendarAsJSON));
     };
+
+    markToday(month, year){
+        const date = new Date();
+        if (month == date.getMonth() && year == date.getFullYear()){
+            const today = date.getDate();
+            const todayItem = this.dateContainer.getElementsByClassName(`${today}`)[0];
+            todayItem.classList.add('today-date');
+        }
+    }
 
     populateHeader(month, year){
         this.headerContainer.innerHTML = `<span>${year}</span><span>${MONTHS[month]}</span>`;
@@ -77,7 +87,7 @@ export class Calendar{
         for(let i = 1; i <= lastDate; i++)
         {
             let li = document.createElement('li');
-            li.classList.add('calendar-date', 'calendar-item');
+            li.classList.add('calendar-date', 'calendar-item', `${i}`);
             li.textContent = `${i}`;
             this.dateContainer.appendChild(li)
         }

@@ -4,37 +4,68 @@
     <title>Dashboard Prototype</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="src/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined">
 </head>
 <body>
-    <div class="calendar-container">
-        <header class="calendar-header">
-            <p id="calendar-month-year"></p>
-            <div id="month-btns">
-                <button id="current-month-btn">TODAY</button>
-                <button id='previous-month-btn'><span class="material-symbols-outlined">arrow_back_ios</span></button>
-                <button id="next-month-btn"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
+    <div id="calendar-event-todo-wrapper">
+        <div id="calendar-container">
+            <header class="calendar-header">
+                <p id="calendar-month-year"></p>
+                <div id="month-btns">
+                    <button id="current-month-btn">TODAY</button>
+                    <button id='previous-month-btn'><span class="material-symbols-outlined">arrow_back_ios</span></button>
+                    <button id="next-month-btn"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
+                </div>
+            </header>
+            
+            <div class="calendar-body">
+                <ul id="calendar-dow" class="calendar-grid-container">
+                    <li class="calendar-item">SUN</li>
+                    <li class="calendar-item">MON</li>
+                    <li class="calendar-item">TUE</li>
+                    <li class="calendar-item">WED</li>
+                    <li class="calendar-item">THU</li>
+                    <li class="calendar-item">FRI</li>
+                    <li class="calendar-item">SAT</li>
+                </ul>
+                <ul id="calendar-dates" class="calendar-grid-container">
+                    
+                </ul>
             </div>
-        </header>
-        
-        <div class="calendar-body">
-            <ul id="calendar-dow" class="calendar-grid-container">
-                <li class="calendar-item">SUN</li>
-                <li class="calendar-item">MON</li>
-                <li class="calendar-item">TUE</li>
-                <li class="calendar-item">WED</li>
-                <li class="calendar-item">THU</li>
-                <li class="calendar-item">FRI</li>
-                <li class="calendar-item">SAT</li>
-            </ul>
-            <ul id="calendar-dates" class="calendar-grid-container">
-                
-            </ul>
         </div>
-    </div>
-    <div class="event-container">
-
+        <div id="event-todo-wrapper">
+            <div id="event-container">
+                <div id="event-header">
+                    <p>EVENTS</p>
+                </div>
+                <div id="event-body">
+                    <ul id="event-list" class="list">
+                        <li> movie night at Alice's house</li>
+                        <li> family dinner </li>
+                    </ul>
+                    <button id="event-add-btn" class="add-btn">+ ADD</button>
+                </div>
+            </div>
+            <div id="todo-container">
+                <div id="todo-header">
+                    <p>TODOS</p>
+                </div>
+                <div id="todo-body">
+                    <ul id="todo-list" class="list">
+                        <li>
+                            <label for="checkbox">Grocery shop</label>
+                            <input type="checkbox" class="checkbox">
+                        </li>
+                        <li></li>
+                        <li>
+                        </li>
+                    </ul>
+                    <button id="todo-add-btn" class="add-btn">+ ADD</button>
+                </div>
+                
+            </div>
+        </div>
     </div>
     <script type="module" src="scripts/main.js"></script>
 </body>
