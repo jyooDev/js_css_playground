@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerContainer = document.getElementById('calendar-month-year');
     let date = new Date();
     let calendar = new Calendar(dateContainer, headerContainer);
-    // localStorage.removeItem('calendar');
     const storedCalendarData = localStorage.getItem('calendar');
     if (storedCalendarData){
         console.log('Locally stored calendar is found. Parsing data...')

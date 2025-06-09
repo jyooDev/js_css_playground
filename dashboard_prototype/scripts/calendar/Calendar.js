@@ -45,11 +45,7 @@ export class Calendar{
         const year = monthlyCalendar.year;
         this.populateHeader(month, year);
         this.populateDates(month,year);
-        if(!this.checkIfInLocalStorage(month,year)){
-            this.monthlyCalendars.push(monthlyCalendar);
-            let calendarAsJSON = this.toJSON();
-            localStorage.setItem('calendar', JSON.stringify(calendarAsJSON));
-        }
+        this.storeLocally(month,year);
         this.markToday(month,year);
         //this.populateTodos(month, year);
         //this.populateEvents(month, year);
@@ -113,7 +109,7 @@ export class Calendar{
         }else{
             month--;
         }
-        console.log(`previous button clicked, populating previous month: ${MONTHS[month]} ${year}`);
+        console.log(`previous button clicked: ${MONTHS[month]} ${year}`);
         const newMonthlyCalendar = new MonthlyCalendar(year, month);
         this.populateCalendar(newMonthlyCalendar);
     }
@@ -128,14 +124,14 @@ export class Calendar{
         }else{
             month++;
         }
-        console.log(`next button clicked, populating previous month: ${MONTHS[month]} ${year}`);
+        console.log(`next button clicked: ${MONTHS[month]} ${year}`);
         const newMonthlyCalendar = new MonthlyCalendar(year, month);
         this.populateCalendar(newMonthlyCalendar);
     }
     
     displayCurrentMonth(){
         const date = new Date();
-        console.log(`today button clicked: populating previous month: ${date.getMonth()} ${date.getFullYear()}`);
+        console.log(`today button clicked: ${date.getMonth()} ${date.getFullYear()}`);
         const currentMonthlyCalendar = new MonthlyCalendar(date.getFullYear(), date.getMonth());
         this.populateCalendar(currentMonthlyCalendar);
     }
@@ -152,13 +148,16 @@ export class Calendar{
         };
     }
 
-    checkIfInLocalStorage(month, year){
-        this.monthlyCalendars.forEach((item) => {
-            if(item.year == year && item.month == month){
-                return true;
-            }
-        })
-        return false;
+    storeLocally(month, year){            
+        const isStored = (c) => c.month == month && c.year == year;
+        if(!this.monthlyCalendars.some(isStored))
+        {
+            console.log("Rendered calendar is not stored in your local storage.");
+            const mCalendar = new MonthlyCalendar(year, month);
+            this.monthlyCalendars.push(mCalendar);
+            let calendarAsJSON = this.toJSON();
+            localStorage.setItem('calendar', JSON.stringify(calendarAsJSON));
+        }
     }
 
     //TO DOS:
