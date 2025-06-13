@@ -43,14 +43,14 @@ export class Calendar{
     populateCalendar(monthlyCalendar){
         const month = monthlyCalendar.month;
         const year = monthlyCalendar.year;
+        let monthlycalendarAsJSON = monthlyCalendar.toJSON();
+        sessionStorage.setItem('renderedMonthlyCalendar', JSON.stringify(monthlycalendarAsJSON));
         this.populateHeader(month, year);
         this.populateDates(month,year);
         this.storeLocally(month,year);
         this.markToday(month,year);
         //this.populateTodos(month, year);
         //this.populateEvents(month, year);
-        let monthlycalendarAsJSON = monthlyCalendar.toJSON();
-        sessionStorage.setItem('renderedMonthlyCalendar', JSON.stringify(monthlycalendarAsJSON));
     };
 
     markToday(month, year){
@@ -76,16 +76,23 @@ export class Calendar{
         for(let i = 0; i < firstDay; i++){
             const li = document.createElement('li');
             li.textContent = `${dateFromLastMonth++}`;
-            li.classList.add('calendar-date', 'calendar-item', 'grey-text');
+            li.classList.add('calendar-item', 'grey-text');
             this.dateContainer.appendChild(li);
         }
         
-        for(let i = 1; i <= lastDate; i++)
+        for(let date = 1; date <= lastDate; date++)
         {
             let li = document.createElement('li');
-            li.classList.add('calendar-date', 'calendar-item', `${i}`);
-            li.textContent = `${i}`;
+            li.classList.add('calendar-date', 'calendar-item', `${date}`);
+            li.textContent = `${date}`;
             this.dateContainer.appendChild(li)
+            li.addEventListener('click', () => {
+                console.log(`Date ${date} is clicked.`);
+                const sessionMonthlyCalendar = sessionStorage['renderedMonthlyCalendar'];
+                const parsedSessionData = JSON.parse(sessionMonthlyCalendar)['monthlyCalendars'];
+                const monthlyCalendar = MonthlyCalendar.fromJSONtoMonthlyCalendar(parsedSessionData);
+                monthlyCalendar.populateToDos(date);
+            })
         }
     
         const calendarDateContainer = document.getElementsByClassName('calendar-dates')[0];

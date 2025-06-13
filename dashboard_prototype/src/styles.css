@@ -7,12 +7,9 @@
     --green-1: #7ca082;
     --green-0: #e7f1e8;
     --shadow: rgba(181, 181, 181, 0.108);
-}
-body{
-    font-family: libre-baskerville;
-    background-color: var(--background--grey);
-    margin: 0;
-    padding: 0;
+    --today-orange: #d47c11c3;
+    --hover-lemon: #ffea00bd;
+    --hover-lemon-text:  #a39600;
 }
 
 #calendar-event-todo-wrapper{
@@ -95,15 +92,23 @@ body{
 }
 
 input[type="checkbox"] {
+    justify-content: space-between;
     width: 20px;
     height: 20px;
     margin: 0;
     accent-color: var(--green-2);
 }
 
-input[type="checkbox"]:not(:disabled):checked {
-  border-color: var(--green-1);
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 32 32" xml:space="preserve"><path style="fill: %23274c77" d="M11.941,28.877l-11.941-11.942l5.695-5.696l6.246,6.246l14.364-14.364L32,8.818"/></svg>');
+.todo-label{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px; 
+}
+.todo-label:has(input:checked) {
+    color: gray;
+    text-decoration: line-through;
+    opacity: 0.6;
 }
 
 .add-btn{
@@ -212,8 +217,18 @@ input[type="checkbox"]:not(:disabled):checked {
 
 .calendar-date {
     margin: 0.7rem 0;
-    transition: ease-in-out()
 }
+
+.calendar-date:hover{
+    background-color: var(--hover-lemon);
+    color: var(--hover-lemon-text);
+    border-radius: 50%;
+    box-sizing: border-box;
+    padding: 2px;
+    margin: 2px;
+    transition: ease 0.1s;
+}
+
 
 #calendar-month-year{
     display: flex;
@@ -224,15 +239,11 @@ input[type="checkbox"]:not(:disabled):checked {
 }
 
 .today-date{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:#d47c11c3;
+    background-color:var(--today-orange);
     color: #f7f1e8;
     font-weight: 700;
     box-sizing: border-box;
     border-radius: 50%;
-    padding: 10px;
-    margin: 0;
-    transition: ease 0.3s;
+    padding: 2px;
+    margin: 2px;
 }

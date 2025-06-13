@@ -1,5 +1,6 @@
 import { MonthlyCalendar } from './calendar/MonthlyCalendar.js';
 import { Calendar } from './calendar/Calendar.js';
+import './utils/darkMode.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const dateContainer = document.getElementById('calendar-dates');
